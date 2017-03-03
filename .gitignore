@@ -1,0 +1,43 @@
+*.rbc
+capybara-*.html
+.rspec
+/log
+/tmp
+/coverage/
+/spec/tmp
+pickle-email-*.html
+.byebug_history
+
+# TODO Comment out these rules if you are OK with secrets being uploaded to the repo
+config/initializers/secret_token.rb
+config/initializers/lime_ext_api.rb
+config/secrets.yml
+/config/*.yml
+
+# vim swap files
+*.swp
+*.swo
+*.swn
+
+## Environment normalisation:
+/.bundle
+/vendor/*
+
+# these should all be checked in to normalise the environment:
+# Gemfile.lock, .ruby-version, .ruby-gemset
+
+# unless supporting rvm < 1.11.0 or doing something fancy, ignore this:
+.rvmrc
+
+# if using bower-rails ignore default bower_components path bower.json files
+*.bowerrc
+bower.json
+
+# Ignore pow environment settings
+.powenv
+
+.svn
+public/
+
+.ruby-version
+.ruby-gemset

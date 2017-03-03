@@ -1,0 +1,5 @@
+LimeExt.configure do |c|
+  c.limesurvey_username = "rctest"
+  c.limesurvey_password = "password"
+  c.service_url = "http://localhost/limesurvey/index.php/admin/remotecontrol"
+end

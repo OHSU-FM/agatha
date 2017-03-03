@@ -1,0 +1,27 @@
+development:
+  adapter: postgresql
+  database: agatha_development
+  host: localhost
+  username: agatha
+  password: 'password'
+  schema_search_path: 'public,target,transform,source' #source,transform,target,public #can be comma separated
+  reconnect: false
+
+production:
+  adapter: postgresql
+  database: agatha
+  host: localhost
+  username: agatha
+  password: 'password'
+  schema_search_path: 'public,target,transform,source' #source,transform,target,public #can be comma separated
+  reconnect: false
+
+testing:
+  adapter: postgresql
+  database: agatha_test
+  host: localhost
+  username: agatha
+  password: 'password'
+  schema_search_path: "transform,target,source,public" #can be comma separated
+  reconnect: false
+

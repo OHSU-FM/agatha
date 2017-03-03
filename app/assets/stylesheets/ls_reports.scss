@@ -1,0 +1,128 @@
+/* Place all the styles related to the reports controller here.
+/* They will automatically be included in application.css.
+/* You can use Sass (SCSS) here: http://sass-lang.com/
+/*= require style
+*/
+@import 'base';
+
+.dropdown-menu > li{
+    & > span{
+        display: block;
+        padding: 20px 20px 3px;
+        clear: both;
+        font-weight: normal;
+        line-height: 1.2;
+        white-space: nowrap;
+    }
+    &:first-child span{
+        padding: 3px 20px;
+    }
+    & > a{
+        line-height: 1.2;
+    }
+
+}
+
+#ls_reports_nav .breadcrumb{
+    line-height: 1.1em;
+    font-size:24px;
+    background-color:transparent;
+    .dropdown{
+        font-size: 22px;
+        color: #777;
+        a{
+            margin-left: 1em;
+            font-size: 14px;
+        }
+
+    }
+}
+
+
+body#ls_reports{
+    .bs-callout{
+        button{top:-10px;right:-10px;}
+    }
+}
+
+body{
+    #page-content{
+
+        .main{
+        
+        } 
+        .sidebar{
+            #report-overview{
+                font-size: 9pt;
+            }
+            #scroll-spy-nav{
+                max-width: 262px;
+                li a{
+                    @extend .ellipsis;
+                }
+            }
+        }
+    }
+}
+
+
+table{line-height:normal;}
+
+a.toggle-img:hover{text-decoration:underline;}
+
+
+
+.dropdown-submenu {
+    position: relative;
+}
+
+.dropdown-submenu>.dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-top: -6px;
+    margin-left: -1px;
+    -webkit-border-radius: 0 6px 6px 6px;
+    -moz-border-radius: 0 6px 6px;
+    border-radius: 0 6px 6px 6px;
+}
+
+.dropdown-submenu:hover>.dropdown-menu {
+    display: block;
+}
+
+.dropdown-submenu>a:after {
+    display: block;
+    content: " ";
+    float: right;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+    border-width: 5px 0 5px 5px;
+    border-left-color: #ccc;
+    margin-top: 5px;
+    margin-right: -10px;
+}
+
+.dropdown-submenu:hover>a:after {
+    border-left-color: #fff;
+}
+
+.dropdown-submenu.pull-left {
+    float: none;
+}
+
+.dropdown-submenu.pull-left>.dropdown-menu {
+    left: -100%;
+    margin-left: 10px;
+    -webkit-border-radius: 6px 0 6px 6px;
+    -moz-border-radius: 6px 0 6px 6px;
+    border-radius: 6px 0 6px 6px;
+}
+.navbar-brand-mylogo {
+   max-height: 50px;
+   height: 50px;
+   width: 50px;
+   margin: 0 auto;
+}
+

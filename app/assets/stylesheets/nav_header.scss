@@ -1,0 +1,12 @@
+/* Fix broken style on a dropdown link for navbar */
+#nav-links > ul > li > div.open > a.btn-danger, #nav-links > ul > li > div > a.btn-danger {
+    @extend .btn-danger
+}
+
+.nav-header-btn {
+  background: none!important;
+  border: none;
+  padding: 0!important;
+  font: inherit;
+  color: #9d9d9d;
+}

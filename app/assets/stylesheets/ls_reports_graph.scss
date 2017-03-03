@@ -1,0 +1,20 @@
+@import 'style';
+@import 'ls_reports';
+
+body#ls_reports_graph{
+    div.panel-heading{
+
+        h3, small{color:#222;}
+    }
+    
+}
+div.tooltip-inner{
+    max-width: 400px;
+    width: auto;
+    text-align: left;
+    background-color: #99327A;
+}
+.right-col {
+    border: 1px solid black;
+}
+

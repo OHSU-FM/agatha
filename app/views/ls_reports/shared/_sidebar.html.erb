@@ -1,0 +1,36 @@
+<%
+opts={} unless defined?(opts) && !opts.nil?
+full_desc = opts[:full_desc]
+hide_arr_flex = opts[:hide_arr_flex]
+%>
+<% cache([@role_aggregate, virtual_groups, opts]) do %>
+  <%= image_tag Settings.site.logo, :size=>"400x250" %>
+  <div id="scroll-spy-nav" class="hidden-print affix-top hidden-sm hidden-xs" role="complementary" data-spy="affix" data-offset-top="380">
+    <ul class="nav">
+      <li><a href="#top">Top of page</a></li>
+      <% virtual_groups.sort_by{|g| g.group_order }.each do |group| %>
+        <li>
+          <a href="#gid<%= group.gid %>"><%= group.group_name %></a>
+          <ul class="nav">
+            <% group.parent_questions.each do |pquestion|%>
+              <% if pquestion.has_sq? && pquestion.qtype == 'arr_flex' && !hide_arr_flex %>
+                <li>
+                  <a href="#qid<%= pquestion.qid %>"><%= hf_sidebar_link_label(pquestion, full_desc) %></a>
+                  <ul class="nav">
+                    <% pquestion.sub_questions.each do |question|%>
+                      <li>
+                        <a href="#qid<%= question.qid %>"><%= hf_sidebar_link_label(pquestion, full_desc)  %></a>
+                      </li>
+                    <% end %>
+                  </ul>
+                </li>
+              <% else %>
+                <li><a href="#qid<%= pquestion.qid %>"><%= hf_sidebar_link_label(pquestion, full_desc)  %></a></li>
+              <% end %>
+            <% end %>
+          </ul>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
