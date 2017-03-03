@@ -387,7 +387,6 @@ module LimeExt::LimeStat
       load_list_drop response_set, opts
     end
 
-    ##
     # Stats for yes_no type questions
     def load_gender response_set, opts={}
       rs = response_set
@@ -398,7 +397,6 @@ module LimeExt::LimeStat
       return qstat
     end
 
-    ##
     # load_n handles N type question - single numerical input
     def load_numeric(response_set, opts={})
       qstat = QuestionStat.new response_set, opts
@@ -414,7 +412,6 @@ module LimeExt::LimeStat
       return qstat
     end
 
-    ##
     # Load data for all questions
     def load_data(opts={})
       temp_questions = []
@@ -427,8 +424,6 @@ module LimeExt::LimeStat
       return temp_questions
     end
 
-    ##
-    #
     def generate_stats_for_question pquestion, opts={}
       method_name = "load_#{pquestion.qtype}"
       if self.respond_to? method_name

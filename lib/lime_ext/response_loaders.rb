@@ -85,8 +85,9 @@ module LimeExt::ResponseLoaders
     # - Or the stats loaders can calculate it individually
     class ResponseSetBase
       attr_accessor :title, :qid, :qtype, :data, :data_labels, :error_labels,
-        :scale_id, :question, :status_questions, :related_columns, :related_error_columns, :lime_answers,
-        :status_column_conversions, :status_question_names, :format_as, :data_column_name, :has_sq
+        :scale_id, :question, :status_questions, :related_columns,
+        :related_error_columns, :lime_answers, :status_column_conversions,
+        :status_question_names, :format_as, :data_column_name, :has_sq
 
       def has_sql; false end
 
@@ -104,8 +105,10 @@ module LimeExt::ResponseLoaders
 
       ##
       # Prevent gon/view from having access to question/role_aggregate
-      def as_json(options=nil)
-        super({:except => ['question', 'status_questions', 'related_columns', 'related_data', 'lime_answers']}.merge(options || {}))
+      def as_json options=nil
+        super({:except => ['question', 'status_questions', 'related_columns',
+                           'related_data', 'lime_answers']
+        }.merge(options || {}))
       end
 
       def lime_answers
@@ -124,7 +127,8 @@ module LimeExt::ResponseLoaders
         #        - Each sub_question has one status_questions
         #
         return @status_questions if defined? @status_questions
-        @status_questions = question.survey.status_questions.select{|q| status_question_names.include? q.question }
+        @status_questions = question.survey.status_questions.select{|q|
+          status_question_names.include? q.question }
         return @status_questions
       end
 

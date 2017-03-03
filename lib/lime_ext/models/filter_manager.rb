@@ -22,16 +22,31 @@ module LimeExt
       @role_aggregate ||= RoleAggregate.find_by(virtual_survey_sid: @sid)
     end
 
+    def get_virtual_survey sid, api
+
+    end
+    def get_virtual_survey sid, api
+      # cache_key = "filter_manager/survey/sid=#{sid}/updated_at=#{RoleAggregate.where(:virtual_survey_sid=>sid).pluck(:updated_at).first.to_i}"
+      # result = Rails.cache.fetch(cache_key, race_condition_ttl: 10) do
+      result = VirtualSurvey.new sid, api
+      # end
+
+      # !!!!!!!!!!! Important !!!!!!!!!!!!
+      # Must marshal/de-marshal in order to prevent return of identical objects
+      result = Marshal.load(Marshal.dump(result))
+      return result
+    end
+
     def lime_survey
-      @lime_survey ||= virtual_survey
+      @lime_survey ||= get_virtual_survey @sid, @rc_api
     end
 
     def lime_survey_unfiltered
-      @lime_survey ||= virtual_survey
+      @lime_survey_unfiltered ||= get_virtual_survey @sid, @rc_api
     end
 
     def virtual_survey
-      @virtual_survey ||= VirtualSurvey.new @sid, @rc_api
+      VirtualSurvey.new @sid, @rc_api
     end
 
     # Generate array of virtual groups
