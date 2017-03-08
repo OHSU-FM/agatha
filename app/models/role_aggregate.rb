@@ -7,12 +7,8 @@ class RoleAggregate < ActiveRecord::Base
   attr_reader :questions
   attr_accessor :agg, :pk
 
-  ##
-  # Associations
   has_many :question_widgets
 
-  ##
-  # Validations
   validates_presence_of :default_view, :virtual_survey_sid
 
   before_validation :set_default_view
@@ -24,13 +20,16 @@ class RoleAggregate < ActiveRecord::Base
     navigation_label 'Lime Survey'
     list do
       field :virtual_survey_sid
+      field :virtual_survey_title do
+        formatted_value{ bindings[:object].enum_ls_titles(bindings[:object].virtual_survey_sid) }
+      end
       field :created_at
     end
     edit do
 
       field :virtual_survey_sid, :enum do
-        enum do
-          LimeExt::API.new().list_surveys.map{|s| [s["surveyls_title"], s["sid"]]}.sort_by {|e| e[0] }
+        enum_method do
+          :enum_ls_sids
         end
       end
       field :ready_for_use? do
@@ -270,6 +269,14 @@ class RoleAggregate < ActiveRecord::Base
     lime_survey.nil? ? 'New' : lime_survey.group_and_title_name[1]
   end
 
+  def enum_ls_sids
+    ls_enum.map{|s| [s["surveyls_title"], s["sid"]]}.sort_by {|e| e[0] }
+  end
+
+  def enum_ls_titles vsid
+    ls_enum.find{|s| s["sid"] == vsid }["surveyls_title"]
+  end
+
   private
 
   def enum_column_names
@@ -279,4 +286,7 @@ class RoleAggregate < ActiveRecord::Base
     }
   end
 
+  def ls_enum
+    @ls_enum ||= LimeExt::API.new().list_surveys
+  end
 end

@@ -56,10 +56,6 @@ class Ability
       can :crud, QuestionWidget , :user_id=>user.id
       can :crud, Dashboard, :user_id=>user.id
     end
-
-    if user.lime_user
-      can :access, :lime_server
-    end
   end
 
 end

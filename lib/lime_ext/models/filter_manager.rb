@@ -16,15 +16,10 @@ module LimeExt
       do_titles
     end
 
-    # Aliases
-
     def role_aggregate
       @role_aggregate ||= RoleAggregate.find_by(virtual_survey_sid: @sid)
     end
 
-    def get_virtual_survey sid, api
-
-    end
     def get_virtual_survey sid, api
       # cache_key = "filter_manager/survey/sid=#{sid}/updated_at=#{RoleAggregate.where(:virtual_survey_sid=>sid).pluck(:updated_at).first.to_i}"
       # result = Rails.cache.fetch(cache_key, race_condition_ttl: 10) do

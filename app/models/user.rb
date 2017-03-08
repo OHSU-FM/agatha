@@ -16,13 +16,12 @@ class User < ActiveRecord::Base
   attr_accessor :login
   serialize :roles, Array
 
-  belongs_to :lime_user, :foreign_key=>:username, :primary_key=>:users_name
-  belongs_to :permission_group, :inverse_of=>:users
+  belongs_to :permission_group
 
   has_many :dashboard_widgets, :through=>:dashboard
   has_many :permission_ls_groups, :through=>:permission_group
   has_many :question_widgets, :dependent=>:delete_all
-  has_many :user_externals, :dependent=>:delete_all, :inverse_of=>:user
+  has_many :user_externals, :dependent=>:delete_all
 
   has_one :dashboard, :dependent=>:destroy
 
